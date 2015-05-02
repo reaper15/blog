@@ -1,0 +1,23 @@
+<%- model_class = Post -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.id, post_path(post) %></td>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+        <td><%=l post.created_at %></td>
+
+      </tr>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_post_path,
+            :class => 'btn btn-primary' %>
